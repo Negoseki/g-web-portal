@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core/core.module';
+import { AppRoutingModule } from '@gal/app-routing.module';
+import { AppComponent } from '@gal/app.component';
+import { CoreModule } from '@gal/core/core.module';
+
 
 @NgModule({
   declarations: [AppComponent],
