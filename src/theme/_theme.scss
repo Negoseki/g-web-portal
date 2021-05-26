@@ -1,0 +1,344 @@
+.font-base {
+  @include font-base();
+}
+
+.font-light {
+  @include font-light();
+}
+
+.font-semibold {
+  @include font-semibold();
+}
+
+.font-bold {
+  @include font-bold();
+}
+
+b {
+  @include font-bold();
+}
+
+.ellipsis {
+  @include ellipsis;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.flex-1 {
+  flex: 1 !important;
+}
+
+.flex-0 {
+  flex: 0 !important;
+}
+
+// .text-green {
+//   color: map-get($colors, secondary-green);
+// }
+
+// .text-red {
+//   color: map-get($colors, secondary-darkred);
+// }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: $font-family-base;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 4px;
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 4px;
+  // background-color: map-get($colors, grey-mediumgrey);
+}
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing.loading-backdrop {
+  background: rgba(black, 0.2);
+}
+
+.mat-select-value {
+  color: $primary;
+}
+
+.mat-button,
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button {
+  min-width: 130px !important;
+}
+
+.mat-button,
+.mat-icon-button,
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-fab,
+.mat-mini-fab {
+  color: $primary;
+  @include font-semibold(16px);
+  &.small {
+    @include font-base(14px, 25px);
+  }
+  &.mat-basic-accent {
+    color: $accent;
+  }
+  &.mat-basic-border {
+    border: 1px solid rgba($primary, 0.7);
+    box-sizing: border-box;
+  }
+
+  &.mat-calendar-previous-button,
+  &.mat-calendar-next-button {
+    color: $primary !important;
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+  }
+
+  &.mat-calendar-period-button {
+    @include font-semibold(13px);
+  }
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+// Adicionando Estilo Customizado Input
+.mat-form-field.mat-form-field-appearance-outline {
+  &.mat-form-field-should-float {
+    .mat-form-field-label {
+      transform: translateY(-1.09375em) scale(0.75);
+    }
+  }
+
+  .mat-form-field-label {
+    top: 1.34375em;
+  }
+
+  .mat-form-field-infix {
+    min-width: 100px;
+    padding: 0.4em 0;
+  }
+
+  .mat-icon-button {
+    margin: 0 !important;
+  }
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: rgba($primary, 0.87);
+}
+
+mat-datepicker-toggle {
+  .mat-icon-button {
+    // color: map-get($colors, text-gray);
+  }
+}
+
+.mat-paginator {
+  background-color: transparent;
+}
+
+.mat-paginator-page-size-select {
+  .mat-form-field-flex {
+    .mat-form-field-infix {
+      min-width: 0 !important;
+
+      .mat-select-arrow-wrapper {
+        transform: none;
+      }
+    }
+
+    .mat-form-field-outline {
+      display: none;
+    }
+
+    .mat-select-value {
+      // color: map-get($colors, gray-75) !important;
+      @include font-semibold(13px);
+    }
+  }
+}
+// END Adicionando Estilo Customizado Input
+
+// Adicionando Estilo Customizado Snack Bar
+.snack-bar-success {
+  width: 351px;
+  height: 88px;
+  background-color: white;
+  // border-top: solid 8px map-get($colors, secondary-green);
+  @include box-shadow();
+}
+// END Adicionando Estilo Customizado Snack Bar
+
+.mat-snack-bar-container.dwc-snack {
+  min-width: 0;
+  min-height: 0;
+  margin: 50px;
+  padding: 30px 60px;
+  border-radius: 0;
+  background-color: white;
+  color: #4a4a4a;
+
+  &.success {
+    // border-top: solid 8px map-get($colors, secondary-green);
+  }
+
+  &.error {
+    // border-top: solid 8px map-get($colors, secondary-darkred);
+  }
+}
+
+// mat-slide-toogle
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #7fba2773;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #80ba27;
+}
+
+.mat-menu-panel.user-menu {
+  width: 218px;
+}
+
+.mat-tooltip {
+  // background: rgba(map-get($colors, secondary-darkblue), 0.85);
+
+  &.accent {
+    // background: rgba(map-get($colors, primary-orange), 0.85);
+  }
+
+  &.warn {
+    background: rgba($warn, 0.85);
+  }
+
+  &.closer-above {
+    margin-bottom: -6px;
+  }
+}
+
+mat-paginator {
+  .mat-paginator-container {
+    min-height: 40px !important;
+    padding: 0 !important;
+  }
+
+  .mat-paginator-page-size-label {
+    @include font-base(13px);
+    & + div {
+      @include font-semibold(13px);
+    }
+  }
+
+  .mat-paginator-range-label {
+    @include font-semibold(13px);
+  }
+
+  .mat-paginator-range-actions {
+    .mat-icon-button {
+      $size: 30px;
+      margin: 0 10px !important;
+      min-width: $size !important;
+      // color: map-get($colors, gray-75) !important;
+
+      width: $size !important;
+      height: $size !important;
+      flex-shrink: 0 !important;
+      line-height: $size !important;
+
+      &.mat-paginator-navigation-previous {
+        margin-left: 0 !important;
+      }
+
+      &.mat-paginator-navigation-next {
+        margin-right: -9px !important;
+      }
+
+      .mat-paginator-icon {
+        width: 25px !important;
+      }
+    }
+  }
+}
+
+.mat-slide-toggle.mat-checked {
+  .mat-slide-toggle-bar {
+    background-color: #7fba2773;
+  }
+  .mat-slide-toggle-thumb {
+    background-color: #80ba27;
+  }
+}
+
+.mat-radio-button.mat-accent {
+  &.mat-radio-checked {
+    .mat-radio-outer-circle {
+      border-color: #80ba27;
+    }
+  }
+
+  .mat-radio-inner-circle {
+    background-color: #80ba27;
+  }
+
+  .mat-radio-outer-circle {
+    border-color: #7fba2773;
+  }
+}
+
+//.mat-slide-toggle.mat-checked .mat-ripple-element
+.mat-slide-toggle.mat-accent.mat-radio-ripple.mat-checked .mat-ripple-element {
+  opacity: 0.5 !important; /*click effect color change*/
+  background-color: #80ba27 !important;
+}
+
+.mat-icon-button.gray-30 {
+  $size: 30px;
+  margin: 0 10px !important;
+  min-width: $size !important;
+  // color: map-get($colors, gray-75) !important;
+
+  width: $size !important;
+  height: $size !important;
+  flex-shrink: 0 !important;
+  line-height: $size !important;
+}
+.dialog-hidden-overflow {
+  .mat-dialog-container {
+    overflow: hidden;
+  }
+}

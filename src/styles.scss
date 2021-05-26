@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+
+@import "src/theme/fonts";
+@import "src/theme/variables";
+@import "src/theme/mixins";
+@import "src/theme/material";
+
+@include mat.core($custom-typography);
+@include mat.all-component-themes($galgo-web-portal-theme);
+
+@import "src/theme/theme";

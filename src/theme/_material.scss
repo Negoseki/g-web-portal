@@ -1,0 +1,88 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+@import "variables";
+
+$custom-typography: mat-typography-config(
+  $font-family: $font-family-base,
+);
+
+$gal-primary-palette: (
+  50: #e9e9e9,
+  100: #c8c8c9,
+  200: #a4a4a5,
+  300: #7f7f80,
+  400: #636365,
+  500: #48484a,
+  600: #414143,
+  700: #38383a,
+  800: #303032,
+  900: #212122,
+  A100: #7c7cf2,
+  A200: #4d4dee,
+  A400: #0909ff,
+  A700: #0000ef,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$gal-accent-palette: (
+  50: #e9f5fb,
+  100: #c8e6f5,
+  200: #a3d6ef,
+  300: #7ec6e9,
+  400: #62b9e4,
+  500: #46addf,
+  600: #3fa6db,
+  700: #379cd7,
+  800: #2f93d2,
+  900: #2083ca,
+  A100: #ffffff,
+  A200: #cfeaff,
+  A400: #9cd3ff,
+  A700: #83c8ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$galgo-web-portal-primary: mat.define-palette($gal-primary-palette);
+$galgo-web-portal-accent: mat.define-palette($gal-accent-palette);
+$galgo-web-portal-warn: mat.define-palette(mat.$red-palette);
+
+$galgo-web-portal-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $galgo-web-portal-primary,
+      accent: $galgo-web-portal-accent,
+      warn: $galgo-web-portal-warn,
+    ),
+  )
+);

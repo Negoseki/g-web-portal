@@ -1,0 +1,297 @@
+@import 'material';
+
+@mixin translate($x: 0, $y: 0) {
+  -webkit-transform: translate($x, $y);
+  -ms-transform: translate($x, $y); // IE9 only
+  -o-transform: translate($x, $y);
+  transform: translate($x, $y);
+}
+
+@mixin box-shadow($shadow...) {
+  @if length($shadow) ==0 {
+    $shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin font-size($font-size: 0) {
+  @if $font-size !=0 {
+    font-size: $font-size;
+  }
+}
+
+@mixin line-height($line-height: 0) {
+  @if $line-height !=0 {
+    line-height: $line-height;
+  }
+}
+
+@mixin font-base($font-size: 0, $line-height: 0) {
+  font-family: $font-family-base;
+  font-weight: normal;
+  @include font-size($font-size);
+  @include line-height($line-height);
+}
+
+@mixin font-light($font-size: 0, $line-height: 0) {
+  font-family: $font-family-base;
+  font-weight: 200;
+  @include font-size($font-size);
+  @include line-height($line-height);
+}
+
+@mixin font-semibold($font-size: 0, $line-height: 0) {
+  font-family: $font-family-base;
+  font-weight: 600;
+  @include font-size($font-size);
+  @include line-height($line-height);
+}
+
+@mixin font-bold($font-size: 0, $line-height: 0) {
+  font-family: $font-family-base;
+  font-weight: 900;
+  @include font-size($font-size);
+  @include line-height($line-height);
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin icon-size($size: 24px) {
+  width: $size;
+  height: $size;
+  line-height: $size;
+  font-size: $size;
+}
+
+@mixin icon-button-size($size: 24px, $icon-size: 24px) {
+  margin: 0 !important;
+  width: $size;
+  height: $size;
+  line-height: $size;
+
+  mat-icon {
+    width: $size;
+    height: $size;
+    line-height: $size;
+    font-size: $icon-size;
+  }
+}
+
+@mixin target-ie {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+@mixin target-edge {
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
+
+@mixin target-ie-edge {
+  @include target-ie {
+    @content;
+  }
+  @include target-edge {
+    @content;
+  }
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin margin-between($margin: 16px) {
+  margin-left: $margin/2 !important;
+  margin-right: $margin/2 !important;
+
+  &:first-child {
+    margin-left: 0 !important;
+  }
+  &:last-child {
+    margin-right: 0 !important;
+  }
+}
+
+@mixin clear-table() {
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+  }
+}
+
+@mixin dialog() {
+  .dialog-header {
+    min-width: 600px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 45px;
+    @include box-shadow();
+  }
+
+  h1.mat-dialog-title {
+    color: $primary;
+    margin: 0;
+    @include font-semibold(18px);
+  }
+
+  .mat-dialog-content,
+  .mat-dialog-actions {
+    min-height: 0;
+    margin: 0;
+  }
+
+  .mat-dialog-content {
+    padding: 0 45px;
+  }
+
+  .mat-dialog-actions {
+    padding: 8px 45px;
+    justify-content: flex-end;
+    @include box-shadow();
+
+    button {
+      margin: 0 !important;
+      @include margin-between(16px);
+    }
+  }
+
+  hr {
+    margin: 0 8px;
+    border: none;
+    border-top: 1px solid #cecece;
+  }
+}
+
+@mixin dwc-table(
+  $hover-row: true,
+  $even-background-color: transparent,
+  $odd-background-color: transparent,
+  $ellipsis: true,
+  $margin-top: 15px
+) {
+  %table-cell-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  margin-top: $margin-top;
+  width: 100%;
+  border: solid 1px #ffffff;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  td,
+  th {
+    @if $ellipsis == true {
+      @include ellipsis;
+    }
+
+    @extend %table-cell-padding;
+
+    &:first-of-type {
+      @extend %table-cell-padding;
+    }
+
+    &:last-of-type {
+      @extend %table-cell-padding;
+    }
+  }
+
+  th {
+    background-color: #e4e5ea;
+    border-left: solid 1px #ffffff;
+    color: rgba(0, 0, 0, 0.54);
+    @include font-semibold(13px);
+
+    ::ng-deep {
+      .mat-sort-header-container {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  td {
+    // color: map-get($colors, secondary-grey);
+    transition: background-color 0.1s linear;
+    @include font-base(13px);
+
+    &:nth-child(even) {
+      background-color: $even-background-color;
+    }
+
+    &:nth-child(odd) {
+      background-color: $odd-background-color;
+    }
+  }
+
+  tr {
+    height: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    transition: background-color 0.1s linear;
+  }
+
+  ::ng-deep {
+    tbody {
+      tr {
+        @if $hover-row == true {
+          cursor: pointer;
+
+          @include hover-focus {
+            background-color: #d5e5ff;
+          }
+        }
+      }
+    }
+  }
+}
