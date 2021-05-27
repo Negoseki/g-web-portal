@@ -4,8 +4,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@gal/*": ["src/app/*"],
-      "@environment": ["src/environments"]
+      "@gal/*": [
+        "src/app/*"
+      ],
+      "@environment": [
+        "src/environments"
+      ]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

@@ -5,7 +5,7 @@ import { PhonePipe } from './phone.pipe';
 
 describe('Pipe: Phonee', () => {
   it('create an instance', () => {
-    let pipe = new PhonePipe();
+    const pipe = new PhonePipe();
     expect(pipe).toBeTruthy();
   });
 });

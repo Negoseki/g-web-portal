@@ -7,9 +7,9 @@ import { CoreModule } from '@gal/core/core.module';
 
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, CoreModule],
+  declarations: [ AppComponent ],
+  imports: [ BrowserModule, AppRoutingModule, BrowserAnimationsModule, CoreModule ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {}

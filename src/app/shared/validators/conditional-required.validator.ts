@@ -2,24 +2,20 @@ import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@an
 import { merge } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-function isEmptyInputValue(value: any): value is void {
-  // we don't check for string here so it also works with arrays
-  return value == null || value.length === 0;
-}
+const isEmptyInputValue = (value: any): value is void => value == null || value.length === 0;
 
-function hasExpectedValues(value: any, expectedValues?: any[]): boolean {
+const hasExpectedValues = (value: any, expectedValues?: any[]): boolean => {
   if (!expectedValues || !expectedValues.length) {
-    expectedValues = [true];
+    expectedValues = [ true ];
   }
+  return expectedValues.map((v) => value === v).reduce((a, b) => a || b);
+};
 
-  return expectedValues.map(v => value === v).reduce((a, b) => a || b);
-}
-
-export function ConditionalRequiredValidator(
+export const ConditionalRequiredValidator = (
   otherControl: FormControl,
   expectedValues?: any[],
   resetControlAutomatically = true
-): ValidatorFn {
+): ValidatorFn => {
   let selfControl: AbstractControl;
   if (resetControlAutomatically) {
     otherControl.valueChanges.pipe(filter(() => !!selfControl)).subscribe(() => {
@@ -41,17 +37,17 @@ export function ConditionalRequiredValidator(
 
     return isEmptyInputValue(control.value) ? { required: true } : null;
   };
-}
+};
 
 export interface ConditionHolder {
   otherControl: FormControl;
   expectedValues?: any[];
 }
 
-export function MultipleAndConditionalRequiredValidator(conditions: ConditionHolder[], resetControlAutomatically = true): ValidatorFn {
+export const MultipleAndConditionalRequiredValidator = (conditions: ConditionHolder[], resetControlAutomatically = true): ValidatorFn => {
   let selfControl: AbstractControl;
   if (resetControlAutomatically) {
-    merge(conditions.map(c => c.otherControl.valueChanges))
+    merge(conditions.map((c) => c.otherControl.valueChanges))
       .pipe(filter(() => !!selfControl))
       .subscribe(() => {
         selfControl.updateValueAndValidity();
@@ -63,7 +59,7 @@ export function MultipleAndConditionalRequiredValidator(conditions: ConditionHol
       selfControl = control;
     }
 
-    const hasValues = conditions.map(c => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a && b);
+    const hasValues = conditions.map((c) => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a && b);
 
     if (!hasValues) {
       if (control.value !== null) {
@@ -74,18 +70,19 @@ export function MultipleAndConditionalRequiredValidator(conditions: ConditionHol
 
     return isEmptyInputValue(control.value) ? { required: true } : null;
   };
-}
-export function MultipleOrConditionalRequiredValidator(conditions: ConditionHolder[]): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const hasValues = conditions.map(c => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a || b);
+};
 
-    if (!hasValues) {
-      if (control.value !== null) {
-        control.setValue(null, { emitEvent: false });
+export const MultipleOrConditionalRequiredValidator =
+  (conditions: ConditionHolder[]): ValidatorFn =>
+    (control: AbstractControl): ValidationErrors | null => {
+      const hasValues = conditions.map((c) => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a || b);
+
+      if (!hasValues) {
+        if (control.value !== null) {
+          control.setValue(null, { emitEvent: false });
+        }
+        return null;
       }
-      return null;
-    }
 
-    return isEmptyInputValue(control.value) ? { required: true } : null;
-  };
-}
+      return isEmptyInputValue(control.value) ? { required: true } : null;
+    };

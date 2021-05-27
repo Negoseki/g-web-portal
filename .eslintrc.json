@@ -21,6 +21,17 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        // "comma-style": [
+        //   "error",
+        //   "last"
+        // ],
+        // "comma-spacing": [
+        //   "error",
+        //   {
+        //     "before": false,
+        //     "after": true
+        //   }
+        // ],
         "curly": 2,
         "indent": [
           "error",
@@ -51,11 +62,19 @@
           "error",
           "never"
         ],
-        "component-selector": [
-          true,
-          "element",
-          "gal",
-          "kebab-case"
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "prefix": "bg",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": "bg",
+            "style": "kebab-case"
+          }
         ],
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/dot-notation": "off",
@@ -71,7 +90,30 @@
           "1tbs"
         ],
         "no-bitwise": "off",
-        "prefer-template": "error"
+        "prefer-template": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "typeLike",
+            "format": [
+              "PascalCase"
+            ]
+          },
+          {
+            "selector": "default",
+            "modifiers": [
+              "exported"
+            ],
+            "format": [
+              "PascalCase",
+              "UPPER_CASE"
+            ]
+          }
+        ],
+        "array-bracket-spacing": [
+          "error",
+          "always"
+        ]
       }
     },
     {
@@ -81,59 +123,7 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {
-        "curly": 2,
-        "indent": [
-          "error",
-          2
-        ],
-        "member-access": 0,
-        "no-console": [
-          "error",
-          {
-            "allow": [
-              "log",
-              "error"
-            ]
-          }
-        ],
-        "no-debugger": 2,
-        "no-empty": 0,
-        "no-eval": 2,
-        "no-string-literal": 0,
-        "object-literal-sort-keys": 0,
-        "prefer-const": 2,
-        "radix": 2,
-        "quotes": [
-          "error",
-          "single"
-        ],
-        "comma-dangle": [
-          "error",
-          "never"
-        ],
-        "component-selector": [
-          true,
-          "element",
-          "gal",
-          "kebab-case"
-        ],
-        "@typescript-eslint/consistent-type-definitions": "error",
-        "@typescript-eslint/dot-notation": "off",
-        "@typescript-eslint/explicit-member-accessibility": [
-          "off",
-          {
-            "accessibility": "explicit"
-          }
-        ],
-        "@typescript-eslint/no-use-before-define": "error",
-        "brace-style": [
-          "error",
-          "1tbs"
-        ],
-        "no-bitwise": "off",
-        "prefer-template": "error"
-      }
+      "rules": {}
     }
   ]
 }

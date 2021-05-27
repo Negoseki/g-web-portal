@@ -6,11 +6,11 @@ import { LoadingService } from './loading.service';
 describe('Service: Loading', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LoadingService]
+      providers: [ LoadingService ]
     });
   });
 
-  it('should ...', inject([LoadingService], (service: LoadingService) => {
+  it('should ...', inject([ LoadingService ], (service: LoadingService) => {
     expect(service).toBeTruthy();
   }));
 });
