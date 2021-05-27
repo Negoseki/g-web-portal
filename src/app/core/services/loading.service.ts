@@ -11,18 +11,14 @@ import { LoadingComponent } from '../components/loading/loading.component';
 export class LoadingService {
   private overlayRef: OverlayRef;
 
-  private showSubscription: Subscription = new Subscription;
-  private hideSubscription: Subscription = new Subscription;
+  private showSubscription: Subscription = new Subscription();
+  private hideSubscription: Subscription = new Subscription();
 
   constructor(private overlay: Overlay) {
     this.overlayRef = this.overlay.create({
       hasBackdrop: true,
       backdropClass: 'loading-backdrop',
-      positionStrategy: this.overlay
-        .position()
-        .global()
-        .centerHorizontally()
-        .centerVertically()
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically()
     });
   }
 
@@ -54,9 +50,6 @@ export class LoadingService {
 
   private getEventObservable(): Observable<any> {
     // Cria um evento que é executado após um delay e cancela a Subscription quando é disparado
-    return of(null).pipe(
-      delay(100),
-      first()
-    );
+    return of(null).pipe(delay(100), first());
   }
 }
