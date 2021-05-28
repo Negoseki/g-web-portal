@@ -17,7 +17,7 @@ import { MaterialModule } from '@gal/shared/material.module';
     CommonModule,
     MaterialModule
   ],
-  exports: [LoadingComponent],
-  entryComponents: [LoadingComponent]
+  exports: [ LoadingComponent ],
+  entryComponents: [ LoadingComponent ]
 })
 export class CoreModule { }

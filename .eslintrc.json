@@ -21,18 +21,6 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        // "comma-style": [
-        //   "error",
-        //   "last"
-        // ],
-        // "comma-spacing": [
-        //   "error",
-        //   {
-        //     "before": false,
-        //     "after": true
-        //   }
-        // ],
-        "curly": 2,
         "indent": [
           "error",
           2
@@ -65,14 +53,14 @@
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "prefix": "bg",
+            "prefix": "gal",
             "style": "camelCase"
           }
         ],
         "@angular-eslint/component-selector": [
           "error",
           {
-            "prefix": "bg",
+            "prefix": "gal",
             "style": "kebab-case"
           }
         ],
@@ -113,6 +101,18 @@
         "array-bracket-spacing": [
           "error",
           "always"
+        ],
+        "object-curly-spacing": [
+          "error",
+          "always"
+        ],
+        "space-in-parens": [
+          "error",
+          "never"
+        ],
+        "arrow-parens": [
+          "error",
+          "as-needed"
         ]
       }
     },

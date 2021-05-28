@@ -8,7 +8,7 @@ const hasExpectedValues = (value: any, expectedValues?: any[]): boolean => {
   if (!expectedValues || !expectedValues.length) {
     expectedValues = [ true ];
   }
-  return expectedValues.map((v) => value === v).reduce((a, b) => a || b);
+  return expectedValues.map(v => value === v).reduce((a, b) => a || b);
 };
 
 export const ConditionalRequiredValidator = (
@@ -47,7 +47,7 @@ export interface ConditionHolder {
 export const MultipleAndConditionalRequiredValidator = (conditions: ConditionHolder[], resetControlAutomatically = true): ValidatorFn => {
   let selfControl: AbstractControl;
   if (resetControlAutomatically) {
-    merge(conditions.map((c) => c.otherControl.valueChanges))
+    merge(conditions.map(c => c.otherControl.valueChanges))
       .pipe(filter(() => !!selfControl))
       .subscribe(() => {
         selfControl.updateValueAndValidity();
@@ -59,7 +59,7 @@ export const MultipleAndConditionalRequiredValidator = (conditions: ConditionHol
       selfControl = control;
     }
 
-    const hasValues = conditions.map((c) => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a && b);
+    const hasValues = conditions.map(c => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a && b);
 
     if (!hasValues) {
       if (control.value !== null) {
@@ -75,7 +75,7 @@ export const MultipleAndConditionalRequiredValidator = (conditions: ConditionHol
 export const MultipleOrConditionalRequiredValidator =
   (conditions: ConditionHolder[]): ValidatorFn =>
     (control: AbstractControl): ValidationErrors | null => {
-      const hasValues = conditions.map((c) => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a || b);
+      const hasValues = conditions.map(c => hasExpectedValues(c.otherControl.value, c.expectedValues)).reduce((a, b) => a || b);
 
       if (!hasValues) {
         if (control.value !== null) {

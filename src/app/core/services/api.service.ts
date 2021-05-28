@@ -58,7 +58,7 @@ export class ApiService {
   getHttpParams(params: any): HttpParams {
     let httpParams = new HttpParams();
     if (params) {
-      Object.keys(params).forEach((key) => {
+      Object.keys(params).forEach(key => {
         const value = params[key];
         if (value === null || value === undefined) {
           return;
@@ -79,7 +79,7 @@ export class ApiService {
     return <T>(source: Observable<T>) =>
       source.pipe(
         timeout(timeoutTime),
-        catchError((error) => {
+        catchError(error => {
           if (options.defaultErrorHandling) {
             if (error.error.errors && error.error.errors.length > 0) {
               // this.snackBar.showError(error.error.errors[0].message);
@@ -104,7 +104,7 @@ export class ApiService {
     return (source: Observable<TaskResponse>) =>
       source.pipe(
         delay(delayTime),
-        map((data) => data)
+        map(data => data)
       );
   }
 }

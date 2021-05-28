@@ -46,18 +46,18 @@ fdescribe('ApiService', () => {
   it('get should call HttpClient', () => {
     const path = 'path';
     const params = 'myparams';
-    const httpParams = new HttpParams();
+    const httpParams = new HttpParams({ fromObject: { myParam: 'param' } });
     when(spyService.getHttpParams(anything())).thenReturn(httpParams);
     when(mockHttp.get(anything(), anything())).thenReturn(of());
-    when(spyService.handleDefaultOptions(anything())).thenReturn((source) => source);
+    when(spyService.handleDefaultOptions(anything())).thenReturn(source => source);
 
     const observable = service.get(path);
 
     expect(observable instanceof Observable).toBeTruthy();
     verify(mockHttp.get(`${Environment.apiUrl}${path}`, anything())).called();
-    expect(capture(mockHttp.get).last()).toEqual([ [ `${Environment.apiUrl}${path}`, { params: httpParams } ] ]);
+
+    expect(capture(mockHttp.get).last()).toEqual([ `${Environment.apiUrl}${path}`, { params: httpParams } ]);
     verify(spyService.handleDefaultOptions(anything())).called();
-    verify(spyService.simulateTaskIdPooling()).called();
     verify(spyService.getHttpParams(params)).times(1);
   });
 
@@ -67,7 +67,7 @@ fdescribe('ApiService', () => {
     const paramsNew = new HttpParams();
     when(spyService.getHttpParams(anything())).thenReturn(paramsNew);
     when(mockHttp.post(anything(), anything())).thenReturn(of());
-    when(spyService.handleDefaultOptions(anything())).thenReturn((source) => source);
+    when(spyService.handleDefaultOptions(anything())).thenReturn(source => source);
 
     const obs = service.post(path, body);
 
@@ -84,7 +84,7 @@ fdescribe('ApiService', () => {
     const paramsNew = new HttpParams();
     when(spyService.getHttpParams(anything())).thenReturn(paramsNew);
     when(mockHttp.put(anything(), anything())).thenReturn(of());
-    when(spyService.handleDefaultOptions(anything())).thenReturn((source) => source);
+    when(spyService.handleDefaultOptions(anything())).thenReturn(source => source);
 
     const obs = service.put(path, body);
 
@@ -101,7 +101,7 @@ fdescribe('ApiService', () => {
     const paramsNew = new HttpParams();
     when(spyService.getHttpParams(anything())).thenReturn(paramsNew);
     when(mockHttp.put(anything(), anything())).thenReturn(of());
-    when(spyService.handleDefaultOptions(anything())).thenReturn((source) => source);
+    when(spyService.handleDefaultOptions(anything())).thenReturn(source => source);
 
     const obs = service.patch(path, body);
 
